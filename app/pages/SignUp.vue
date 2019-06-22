@@ -1,9 +1,35 @@
 <template>
   <StackLayout>
-    <Label class="message" :text="msg" col="0" row="0"/>
-    <TextField v-model="email" hint="E-mail:"/>
-    <TextField v-model="password" :secure="true" hint="Password:"/>
-    <Button text="Login" @tap="signUp"/>
+    <FLexboxLayout
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      textAlign="center"
+      height="100%"
+    >
+      <Label text="REGISTRATION" marginBottom="30" class="caption-1"/>
+      <TextField v-model="email" hint="E-mail:" class="input" marginBottom="20" width="80%"/>
+      <TextField
+        v-model="password"
+        :secure="true"
+        hint="Password:"
+        class="input"
+        marginBottom="20"
+        width="80%"
+      />
+      <TextField
+        v-model="passwordConfirm"
+        :secure="true"
+        hint="Cinfirm password:"
+        class="input"
+        marginBottom="20"
+        width="80%"
+      />
+
+      <Button text="Registration" @tap="signUp" class="button" width="80%"/>
+
+      <Label text="Sign in" class="link" @tap="$router.push('/')" marginTop="20"></Label>
+    </FLexboxLayout>
   </StackLayout>
 </template>
 
@@ -14,26 +40,20 @@ export default {
     return {
       msg: "Sign Up",
       email: "",
-      password: ""
+      password: "",
+      passwordConfirm: ""
     };
   },
   methods: {
-    signUp() {
-      this.$apollo
-        .mutate({
-          mutation: SIGN_UP,
-          variables: {
-            email: this.email,
-            password: this.password,
-            isStream: false
-          }
-        })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    async signUp() {
+      await this.$apollo.mutate({
+        mutation: SIGN_UP,
+        variables: {
+          email: this.email,
+          password: this.password,
+          isStream: false
+        }
+      });
     }
   }
 };

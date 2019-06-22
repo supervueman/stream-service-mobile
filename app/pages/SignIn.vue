@@ -19,7 +19,7 @@
       />
       <Button text="Login" @tap="login" class="button" width="80%"/>
 
-      <Label text="Sign up" class="link" @tap="$router.push('/signup')" marginTop="20">Sign up</Label>
+      <Label text="Sign up" class="link" @tap="$router.push('/signup')" marginTop="20"></Label>
     </FLexboxLayout>
   </StackLayout>
 </template>
