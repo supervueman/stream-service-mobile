@@ -88,7 +88,7 @@ export const authenticate = {
           token: localStorage.getItem('access_token')
         }
       });
-
+      console.log('hi')
       commit('setProfile', res.data.queryProfile);
     },
 

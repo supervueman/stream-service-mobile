@@ -12,7 +12,6 @@
         backgroundColor="#030823"
         row="1"
         titleVisibility="never"
-        @tabPressed="tabPressed"
         @tabSelected="onBottomNavigationTabSelected"
         v-if="profile._id !== ''"
       >
@@ -41,9 +40,6 @@ export default {
     }
   },
   methods: {
-    tabPressed(args) {
-      console.log(args);
-    },
     onBottomNavigationTabSelected({ newIndex }) {
       switch (newIndex) {
         case 0:
@@ -64,6 +60,7 @@ export default {
     }
   },
   async mounted() {
+    this.$router.push("/");
     if (localStorage.getItem("access_token") !== null) {
       await this.$store.dispatch("authenticate/fetchProfile");
       this.$router.push("/profile");
@@ -73,4 +70,3 @@ export default {
   }
 };
 </script>
-
